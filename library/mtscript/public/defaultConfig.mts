@@ -1,0 +1,11 @@
+[h: defaultTimeData = json.set("{}","dayOfWeek",2,"dayOfMonth",27,"monthOfYear",1,"timeOfDay",0,"currentSeason",1,"currentHour",8,"currentMinute",0,"currentSecond",0)]
+[h: defaultDayNames = json.append("[]","Moonday","Bloodday","Earthday","Growthday","Feastday","Stillday","Sunday")]
+[h: defaultMonthDays = json.append("[]",45,46,46,46,45,46,45,46)]
+[h: defaultMonthNames = json.append("[]","Winterwane","Springrise","Springwane","Summerrise","Summerwane","Fallrise","Fallwane","Winterrise")]
+[h: defaultSeasonNames = json.append("[]","Winter","Spring","Summer","Autumn")]
+[h: defaultCalendarData = json.set("{}","calendarYear",1167,"dayInMonth",defaultMonthDays,"dayInWeek",json.length(defaultDayNames),"dayNames",defaultDayNames,"hourPerDay",24,"lastYearStartDay",1,"minutePerHour",60,"months",defaultMonthNames,"nextYearStartDay",1,"seasons",defaultSeasonNames,"secondPerMinute",60,"yearStartDay",0,"mostWeekInMonth",8)]
+[h: defaultEventData = "{}"]
+
+[h: setLibProperty("timeData", defaultTimeData, "Lib:DateTime")]
+[h: setLibProperty("calendarData", defaultCalendarData, "Lib:DateTime")]
+[h: setLibProperty("eventData", defaultEventData, "Lib:DateTime")]

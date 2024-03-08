@@ -1,0 +1,14 @@
+{
+  "name": "Lib:DateTime",
+  "version": "1.0",
+  "website": "",
+  "gitUrl": "",
+  "authors": ["Cold_Ankles"],
+  "license": "",
+  "namespace": "DateTime",
+  "description": "A Library for handing dates, times, and events within a customisable calendar.",
+  "shortDescription": "Date Time and Calendar Library",
+  "allowsUriAccess": true,
+  "licenseFile": "",
+  "readMeFile": ""
+}
