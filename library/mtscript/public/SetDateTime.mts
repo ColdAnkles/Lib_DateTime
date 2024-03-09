@@ -32,7 +32,7 @@
 "uYearStart | "+json.toList(json.get(calendar,"dayNames"),",")+" | Year Starts On | LIST | SELECT="+json.get(calendar,"yearStartDay")
 )]
 
-[h: abort(status)]
+[h: return(status)]
 
 [h: time=json.set(time,"currentHour",uHour)]
 [h: time=json.set(time,"currentMinute",uMinute)]

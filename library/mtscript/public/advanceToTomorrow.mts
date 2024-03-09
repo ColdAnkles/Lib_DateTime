@@ -1,4 +1,4 @@
-[h: now = datetime.now())]
+[h: now = datetime.now()]
 [h: tomorrow = json.set(now,"hour",7)]
 [h: tomorrow = json.set(tomorrow,"day",json.get(now,"day")+1)]
 [h: tomorrow = datetime.diffDateTime(tomorrow,now)]

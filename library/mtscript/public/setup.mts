@@ -43,7 +43,7 @@
 }]
 
 [h: calendarData = "{}"]
-[h: calendarData = json.set(calendarData, "year", 1)]
+[h: calendarData = json.set(calendarData, "calendarYear", 1)]
 [h: calendarData = json.set(calendarData, "dayInMonth", monthDays)]
 [h: calendarData = json.set(calendarData, "dayInWeek", dayCount)]
 [h: calendarData = json.set(calendarData, "dayNames", dayNames)]
@@ -69,3 +69,5 @@
 
 [h: setLibProperty("calendarData", calendarData, "Lib:DateTime")]
 [h: setLibProperty("timeData", timeData, "Lib:DateTime")]
+
+[h: datetime.SetDateTime()]
