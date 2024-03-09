@@ -2,7 +2,7 @@
   "name": "Lib:DateTime",
   "version": "1.0",
   "website": "",
-  "gitUrl": "",
+  "gitUrl": "https://github.com/ColdAnkles/Lib_DateTime",
   "authors": ["Cold_Ankles"],
   "license": "",
   "namespace": "DateTime",
