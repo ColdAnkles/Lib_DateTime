@@ -13,7 +13,7 @@
 [h: monthDays = "[]"]
 [h: monthInputString = "[h: input("]
 [h, count(monthCount), code:{
-    [h: monthNames = json.append(monthNames, '"monthName_'+roll.count+'|Month '+roll.count+'|Month '+(roll.count+1)+'"')]
+    [h: monthNames = json.append(monthNames, '"monthName_'+roll.count+'|Month '+(roll.count+1)+'|Month '+(roll.count+1)+'"')]
     [h: monthNames = json.append(monthNames, '"monthDays_'+roll.count+'|31|Days in Month '+(roll.count+1)+'"')]
 
 }]
