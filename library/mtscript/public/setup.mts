@@ -70,5 +70,6 @@
 [h: setLibProperty("calendarData", calendarData, "Lib:DateTime")]
 [h: setLibProperty("timeData", timeData, "Lib:DateTime")]
 [h: setLibProperty("eventData", "{}", "Lib:DateTime")]
+[h: setLibProperty("overlayControls", true, "Lib:DateTime")]
 
 [h: datetime.SetDateTime()]
