@@ -42,6 +42,11 @@
 [h: time=json.set(time,"dayOfMonth",uDay)]
 [h: time=json.set(time,"currentSeason",uSeason)]
 [h: calendar=json.set(calendar,"yearStartDay",uYearStart)]
+[h: lastYearStartDay = uYearStart-1]
+[h, if(lastYearStartDay==-1), code:{
+	[h: lastYearStartDay=6]
+};{}]
+[h: calendar=json.set(calendar,"lastYearStartDay",lastYearStartDay)]
 
 [h: setLibProperty("timeData",time,"Lib:DateTime")]
 [h: setLibProperty("calendarData",calendar,"Lib:DateTime")]

@@ -48,7 +48,7 @@
 [h: calendarData = json.set(calendarData, "dayInWeek", dayCount)]
 [h: calendarData = json.set(calendarData, "dayNames", dayNames)]
 [h: calendarData = json.set(calendarData, "hourPerDay", hourPerDay)]
-[h: calendarData = json.set(calendarData, "lastYearStartDay", 1)]
+[h: calendarData = json.set(calendarData, "lastYearStartDay", 6)]
 [h: calendarData = json.set(calendarData, "minutePerHour", minutePerHour)]
 [h: calendarData = json.set(calendarData, "months", monthNames)]
 [h: calendarData = json.set(calendarData, "nextYearStartDay", 1)]

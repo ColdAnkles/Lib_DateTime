@@ -12,7 +12,7 @@
 	[h: time=json.set(time,"dayOfWeek",nextDayOfWeek)]
 }]
 [h, if(nextDayOfMonth == -1 ), code:{
-	[h: nextDayOfMonth=daysLastMonth]
+	[h: nextDayOfMonth=daysLastMonth-1]
 	[h: time=json.set(time,"dayOfMonth",nextDayOfMonth)]
 	[h: setLibProperty("timeData", time,"Lib:DateTime")]
 	[h: datetime.subMonth()]
