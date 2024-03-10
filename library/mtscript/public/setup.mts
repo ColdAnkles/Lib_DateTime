@@ -30,7 +30,7 @@
 [h: dayNames = "[]"]
 [h: dayInputString = "[h: input("]
 [h, count(dayCount), code:{
-    [h: dayNames = json.append(dayNames, '"dayName_'+roll.count+'|Day '+roll.count+'|Day '+(roll.count+1)+'"')]
+    [h: dayNames = json.append(dayNames, '"dayName_'+roll.count+'|Day '+(roll.count+1)+'|Day '+(roll.count+1)+'"')]
 
 }]
 [h: dayInputString = dayInputString + json.toList(dayNames,",") + ")]"]
@@ -69,5 +69,6 @@
 
 [h: setLibProperty("calendarData", calendarData, "Lib:DateTime")]
 [h: setLibProperty("timeData", timeData, "Lib:DateTime")]
+[h: setLibProperty("eventData", "{}", "Lib:DateTime")]
 
 [h: datetime.SetDateTime()]

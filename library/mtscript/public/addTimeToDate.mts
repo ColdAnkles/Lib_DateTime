@@ -1,6 +1,6 @@
 [h: timeOne = json.get(macro.args,0)]
 [h: timeTwo = json.get(macro.args,1)]
-[h: calendar = getLibProperty("CalendarData","Lib:DateTime")]
+[h: calendar = getLibProperty("calendarData","Lib:DateTime")]
 
 [h: secondRawAdd = (json.get(timeOne,"second")+json.get(timeTwo,"second"))]
 [h: secondMod = math.mod(secondRawAdd,json.get(calendar,"secondPerMinute"))]
