@@ -1,6 +1,6 @@
 [h: calendar = getLibProperty("calendarData","Lib:DateTime")]
 [h: monthCount = json.length(json.get(calendar,"months"))]
-[h: calendarRows = monthCount / round(math.floor(sqrt(monthCount)))]
+[h: calendarRows = round(monthCount / round(math.floor(sqrt(monthCount))))]
 [h: dayInMonth = json.get(calendar,"dayInMonth")]
 [h: dayNames = json.get(calendar,"dayNames")]
 [h: time = getLibProperty("timeData","Lib:DateTime")]
@@ -11,6 +11,14 @@
 	[h: mostWeekInMonth=0]
 	[h: calendar = json.set(calendar,"mostWeekInMonth",mostWeekInMonth)]
 	[h: setLibProperty("calendarData",calendar,"Lib:DateTime")]
+};{}]
+
+[h: isLeapYear = js.datetime.isLeapYear(json.get(calendar,"calendarYear"))=="true"]
+[h: leapDays = 0]
+[h: leapMonth = -1]
+[h, if(isLeapYear), code:{
+	[h: leapDays = json.get(calendar,"leapYearDays")]
+	[h: leapMonth = json.get(calendar,"leapYearMonth")]
 };{}]
 
 [h: macro.return=number(json.get(calendar,"yearStartDay"))]
@@ -35,7 +43,13 @@
 	<tr>
 		[r, count(monthCount,""), code:{
 			[h: loop = roll.count]
-			[h: monthdata=json.set("{}","monthName",json.get(json.get(calendar,"months"),loop),"monthNum",loop,"dayInWeek",json.get(calendar,"dayInWeek"),"dayInMonth",json.get(dayInMonth,loop),"StartDay",number(macro.return),"dayOfMonth",json.get(time,"dayOfMonth"),"currentMonth",json.get(json.get(calendar,"months"),json.get(time,"monthOfYear")))]
+			[h: monthdata=json.set("{}","monthName",json.get(json.get(calendar,"months"),loop),
+			"monthNum",loop,"dayInWeek",json.get(calendar,"dayInWeek"),
+			"dayInMonth",json.get(dayInMonth,loop),
+			"StartDay",number(macro.return),
+			"dayOfMonth",json.get(time,"dayOfMonth"),
+			"currentMonth",json.get(json.get(calendar,"months"),json.get(time,"monthOfYear")),
+			"addDays",if(isLeapYear && loop==leapMonth, leapDays, 0))]
 			<td>[MACRO("DrawMonth@Lib:DateTime"):monthData]</td>
 			[h: lastDay=macro.return]
 			[r: if(math.mod(loop+1,calendarRows)==0,"</tr><tr>","")]

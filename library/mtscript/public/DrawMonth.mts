@@ -2,7 +2,8 @@
 [h: dayNames = json.get(calendar,"dayNames")]
 [h: startDay = json.get(macro.args,"StartDay")]
 [h: mostWeekInMonth = json.get(calendar,"mostWeekInMonth")]
-[h: currentCount = round(ceil(divide(json.get(macro.args,"dayInMonth")+startDay, json.get(macro.args,"dayInWeek"))))]
+[h: dayInMonth = json.get(macro.args,"dayInMonth") + json.get(macro.args, "addDays")]
+[h: currentCount = round(ceil(divide(dayInMonth+startDay, json.get(macro.args,"dayInWeek"))))]
 [h: lastNum=0]
 [h, if(currentCount>mostWeekInMonth), code:{
 	[h: mostWeekInMonth=currentCount]
@@ -10,11 +11,7 @@
 	[h: setLibProperty("calendarData",calendar)]
 };{}]
 
-[h: 'monthRows = json.get(macro.args,"dayInMonth")+math.mod(json.get(macro.args,"dayInMonth"),json.get(macro.args,"dayInWeek"))+if(startDay>4,json.get(macro.args,"dayInWeek")+1,1)']
 [h: monthRows = multiply(json.get(macro.args,"dayInWeek"), mostWeekInMonth)]
-[h: 'monthRows = startDay+json.get(macro.args,"dayInMonth")+math.mod(json.get(macro.args,"dayInMonth"),json.get(macro.args,"dayInWeek"))']
-[h: 'monthRows = json.get(macro.args,"dayInWeek")*math.mod(json.get(macro.args,"dayInMonth"),json.get(macro.args,"dayInWeek"))']
-[h: 'broadcast(json.get(macro.args,"monthName") +math.mod(json.get(macro.args,"dayInMonth"),json.get(macro.args,"dayInWeek")))']
 
 <div height="100%">
 <table width="100%" height="100%">
@@ -49,7 +46,7 @@
 			};{
 				[h: dayClass="otherDay"]
 			}]
-			[r, if(loop>=startDay && (loop-startDay)<json.get(macro.args,"dayInMonth")), code:{
+			[r, if(loop>=startDay && (loop-startDay)<dayInMonth), code:{
 				<td class=[r: if(json.get(eventCheck,"day") && dayClass!="currentDay","eventDay",dayClass)]>[r: macroLink(number(loop+1-startDay),"viewDayEvents@Lib:DateTime", "none", dayArgs)]</td>
 				[h: lastNum=loop]
 				[h: 'broadcast(json.get(macro.args,"monthName") + number(loop+1-startDay))']

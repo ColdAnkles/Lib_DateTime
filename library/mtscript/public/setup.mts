@@ -1,3 +1,27 @@
+[h: calendarOptions = json.append(getLibProperty("preloadedCalendars", "Lib:DateTime"),"Custom")]
+[h: input("importCalendar|"+calendarOptions+"|Calendar|LIST|DELIMITER=JSON VALUE=STRING")]
+
+[h, if(importCalendar!="Custom"), code:{
+    [h: datetime.importPresetCalendar(importCalendar)]
+
+    [h: timeData = "{}"]
+    [h: timeData = json.set(timeData, "dayOfWeek", 0)]
+    [h: timeData = json.set(timeData, "dayOfMonth", 0)]
+    [h: timeData = json.set(timeData, "monthOfYear", 0)]
+    [h: timeData = json.set(timeData, "timeOfDay", 0)]
+    [h: timeData = json.set(timeData, "currentSeason", 0)]
+    [h: timeData = json.set(timeData, "currentHour", 0)]
+    [h: timeData = json.set(timeData, "currentMinute", 0)]
+    [h: timeData = json.set(timeData, "currentSecond", 0)]
+    
+    [h: setLibProperty("timeData", timeData, "Lib:DateTime")]
+    [h: setLibProperty("eventData", "{}", "Lib:DateTime")]
+    [h: setLibProperty("overlayControls", true, "Lib:DateTime")]
+    
+    [h: datetime.SetDateTime()]
+    [h: return(0)]
+};{}]
+
 [h: monthCount = 12]
 [h: dayCount = 7]
 [h: hourPerDay = 24]
@@ -42,6 +66,17 @@
     [h: dayNames = json.append(dayNames, evalMacro("[r: dayName_"+roll.count+"]"))]
 }]
 
+[h: leapYearFormula="year % 4 == 0 AND (year % 100 != 0 OR year % 400 == 0)"]
+[h: leapYearMonth=json.get(monthNames,2)]
+[h: leapYearDays=2]
+
+[h: ans=input("leapYearFormula|"+leapYearFormula+"|<html><span title='Use AND and OR instead of standard JS. Use year as the input variable.'>JS Leap Year Formula*</span></html>|TEXT|WIDTH=25",
+            "leapYearMonth|"+monthNames+"|Add Days to Month|LIST|DELIMITER=JSON",
+            "leapYearDays|0|Additional Days")]
+
+[h: leapYearFormula = replace(leapYearFormula, "OR", "||")]
+[h: leapYearFormula = replace(leapYearFormula, "AND", "&&")]
+
 [h: calendarData = "{}"]
 [h: calendarData = json.set(calendarData, "calendarYear", 1)]
 [h: calendarData = json.set(calendarData, "dayInMonth", monthDays)]
@@ -56,6 +91,10 @@
 [h: calendarData = json.set(calendarData, "secondPerMinute", secondPerMinute)]
 [h: calendarData = json.set(calendarData, "yearStartDay", 0)]
 [h: calendarData = json.set(calendarData, "mostWeekInMonth", ceil(math.arrayMax(monthDays)/dayCount)+2)]
+[h: calendarData = json.set(calendarData, "leapYearDays", leapYearDays)]
+[h: calendarData = json.set(calendarData, "leapYearMonth", leapYearMonth)]
+[h: calendarData = json.set(calendarData, "leapYearFormula", leapYearFormula)]
+
 
 [h: timeData = "{}"]
 [h: timeData = json.set(timeData, "dayOfWeek", 0)]

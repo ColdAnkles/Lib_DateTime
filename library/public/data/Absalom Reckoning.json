@@ -1,0 +1,57 @@
+{
+    "calendarYear": 4719,
+    "dayInMonth": [
+        31,
+        28,
+        31,
+        30,
+        31,
+        30,
+        31,
+        31,
+        30,
+        31,
+        30,
+        31
+    ],
+    "dayInWeek": 7,
+    "dayNames": [
+        "Moonday",
+        "Toilday",
+        "Wealday",
+        "Oathday",
+        "Fireday",
+        "Starday",
+        "Sunday"
+    ],
+    "hourPerDay": 24,
+    "lastYearStartDay": 0,
+    "leapYearDays": 1,
+    "leapYearFormula": "year % 4 == 0",
+    "leapYearMonth": 1,
+    "minutePerHour": 60,
+    "months": [
+        "Abadius",
+        "Calistril",
+        "Pharast",
+        "Gozran",
+        "Desnus",
+        "Sarenith",
+        "Erastus",
+        "Arodus",
+        "Rova",
+        "Lamashan",
+        "Neth",
+        "Kuthona"
+    ],
+    "mostWeekInMonth": 7,
+    "nextYearStartDay": 2,
+    "seasons": [
+        "Summer",
+        "Autumn",
+        "Winter",
+        "Spring"
+    ],
+    "secondPerMinute": 60,
+    "yearStartDay": 1
+}

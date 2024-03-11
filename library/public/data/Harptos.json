@@ -1,0 +1,60 @@
+{
+    "calendarYear": 1492,
+    "dayInMonth": [
+        31,
+        30,
+        30,
+        31,
+        30,
+        30,
+        31,
+        30,
+        31,
+        30,
+        31,
+        30
+    ],
+    "dayInWeek": 10,
+    "dayNames": [
+        "Oneday",
+        "Twoday",
+        "Threeday",
+        "Fourday",
+        "Fiveday",
+        "Sixday",
+        "Sevenday",
+        "Eightday",
+        "Nineday",
+        "Tenday"
+    ],
+    "hourPerDay": 24,
+    "lastYearStartDay": 0,
+    "leapYearDays": 1,
+    "leapYearFormula": "year % 4 == 0",
+    "leapYearMonth": 6,
+    "minutePerHour": 60,
+    "months": [
+        "Hammer",
+        "Alturiak",
+        "Ches",
+        "Tarsakh",
+        "Mirtul",
+        "Kythorn",
+        "Flamerule",
+        "Eleasias",
+        "Eleint",
+        "Marpenoth",
+        "Uktar",
+        "Nightal"
+    ],
+    "mostWeekInMonth": 4,
+    "nextYearStartDay": 2,
+    "seasons": [
+        "Summer",
+        "Autumn",
+        "Winter",
+        "Spring"
+    ],
+    "secondPerMinute": 60,
+    "yearStartDay": 1
+}

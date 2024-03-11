@@ -1,0 +1,57 @@
+{
+    "calendarYear": 2024,
+    "dayInMonth": [
+        31,
+        28,
+        31,
+        30,
+        31,
+        30,
+        31,
+        31,
+        30,
+        31,
+        30,
+        31
+    ],
+    "dayInWeek": 7,
+    "dayNames": [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+    ],
+    "hourPerDay": 24,
+    "lastYearStartDay": 0,
+    "leapYearDays": 1,
+    "leapYearFormula": "year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)",
+    "leapYearMonth": 1,
+    "minutePerHour": 60,
+    "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+    ],
+    "mostWeekInMonth": 7,
+    "nextYearStartDay": 2,
+    "seasons": [
+        "Summer",
+        "Autumn",
+        "Winter",
+        "Spring"
+    ],
+    "secondPerMinute": 60,
+    "yearStartDay": 1
+}

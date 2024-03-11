@@ -1,0 +1,46 @@
+{
+    "calendarYear": 1167,
+    "dayInMonth": [
+        45,
+        46,
+        46,
+        46,
+        45,
+        46,
+        45,
+        46
+    ],
+    "dayInWeek": 7,
+    "dayNames": [
+        "Moonday",
+        "Bloodday",
+        "Earthday",
+        "Growthday",
+        "Feastday",
+        "Stillday",
+        "Sunday"
+    ],
+    "hourPerDay": 24,
+    "lastYearStartDay": 1,
+    "minutePerHour": 60,
+    "months": [
+        "Winterwane",
+        "Springrise",
+        "Springwane",
+        "Summerrise",
+        "Summerwane",
+        "Fallrise",
+        "Fallwane",
+        "Winterrise"
+    ],
+    "mostWeekInMonth": 8,
+    "nextYearStartDay": 1,
+    "seasons": [
+        "Winter",
+        "Spring",
+        "Summer",
+        "Autumn"
+    ],
+    "secondPerMinute": 60,
+    "yearStartDay": 0
+}
