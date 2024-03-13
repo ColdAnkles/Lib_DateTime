@@ -24,3 +24,5 @@
 [h: newMonthCache = json.set(newMonthCache, "valid", false)]
 [h: htmlCaches = json.set(htmlCaches, "month_"+json.get(oldTime, "month"), oldMonthCache, "month_"+json.get(newTime, "month"), newMonthCache, "allValid", false)]
 [h: setLibProperty("htmlCaches", htmlCaches, "Lib:DateTime")]
+
+[h: datetime.changeSeason()]

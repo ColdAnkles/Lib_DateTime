@@ -59,5 +59,6 @@
 [h, if(vis), code:{
 	[MACRO("DrawCalendar@Lib:DateTime") : "{ParentToken:'Lib:DateTime'}"]
 }]
+[h: datetime.changeSeason()]
 [h: datetime.updateUI()]
 [h: datetime.checkExpiry(oldTime, datetime.now())]
