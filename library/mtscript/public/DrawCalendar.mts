@@ -22,6 +22,6 @@
 };{}]
 
 [h: macro.return=number(json.get(calendar,"yearStartDay"))]
-[frame5("Calendar", "width=900; height=900"): {
+[frame5("Calendar", "width=900; height=950"): {
 	[r: js.datetime.calendarHTML()]
 }]
