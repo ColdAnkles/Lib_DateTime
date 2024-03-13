@@ -46,16 +46,12 @@
         "Late Spring"
     ],
     "seasonDistribution":[
-        ["Early Winter", "Late Winter"],
         ["Late Winter"],
         ["Early Spring"],
-        ["Late Spring", "Early Spring"],
         ["Late Spring"],
         ["Early Summer"],
-        ["Early Summer", "Late Summer"],
         ["Late Summer"],
         ["Early Autumn"],
-        ["Early Autumn","Late Autumn"],
         ["Late Autumn"],
         ["Early Winter"]
     ],
