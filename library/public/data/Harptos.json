@@ -50,10 +50,28 @@
     "mostWeekInMonth": 4,
     "nextYearStartDay": 2,
     "seasons": [
-        "Summer",
-        "Autumn",
-        "Winter",
-        "Spring"
+        "Early Summer",
+        "Late Summer",
+        "Early Autumn",
+        "Late Autumn",
+        "Early Winter",
+        "Late Winter",
+        "Early Spring",
+        "Late Spring"
+    ],
+    "seasonDistribution":[
+        ["Early Winter", "Late Winter"],
+        ["Late Winter"],
+        ["Early Spring"],
+        ["Late Spring", "Early Spring"],
+        ["Late Spring"],
+        ["Early Summer"],
+        ["Early Summer", "Late Summer"],
+        ["Late Summer"],
+        ["Early Autumn"],
+        ["Early Autumn","Late Autumn"],
+        ["Late Autumn"],
+        ["Early Winter"]
     ],
     "secondPerMinute": 60,
     "yearStartDay": 1

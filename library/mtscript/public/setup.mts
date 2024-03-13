@@ -84,6 +84,8 @@
 [h: leapYearFormula = replace(leapYearFormula, "OR", "||")]
 [h: leapYearFormula = replace(leapYearFormula, "AND", "&&")]
 
+[h: seasonList = json.append("[]","Early Summer","Late Summer","Early Autumn","Late Autumn","Early Winter","Late Winter","Early Spring","Late Spring")]
+
 [h: calendarData = "{}"]
 [h: calendarData = json.set(calendarData, "calendarYear", 1)]
 [h: calendarData = json.set(calendarData, "dayInMonth", monthDays)]
@@ -94,13 +96,35 @@
 [h: calendarData = json.set(calendarData, "minutePerHour", minutePerHour)]
 [h: calendarData = json.set(calendarData, "months", monthNames)]
 [h: calendarData = json.set(calendarData, "nextYearStartDay", 1)]
-[h: calendarData = json.set(calendarData, "seasons", json.append("[]","Summer","Autumn","Winter","Spring"))]
+[h: calendarData = json.set(calendarData, "seasons", seasonList)]
 [h: calendarData = json.set(calendarData, "secondPerMinute", secondPerMinute)]
 [h: calendarData = json.set(calendarData, "yearStartDay", 0)]
 [h: calendarData = json.set(calendarData, "mostWeekInMonth", ceil(math.arrayMax(monthDays)/dayCount)+2)]
 [h: calendarData = json.set(calendarData, "leapYearDays", leapYearDays)]
 [h: calendarData = json.set(calendarData, "leapYearMonth", leapYearMonth)]
 [h: calendarData = json.set(calendarData, "leapYearFormula", leapYearFormula)]
+
+[h: exSeasonList = json.append(seasonList, "None")]
+[h: seasonInput = "[h: input("]
+[h: seasonStrings = "[]"]
+[h, count(monthCount), code:{
+    [h: seasonStrings = json.append(seasonStrings, '"seasonsMonth_'+roll.count+'|'+json.toList(seasonList,",")+'|Season For Month '+(roll.count+1)+'|LIST|VALUE=STRING"')]
+    [h: seasonStrings = json.append(seasonStrings, '"seasonsMonthAlt_'+roll.count+'|'+json.toList(exSeasonList,",")+'|Alternative Season For Month '+(roll.count+1)+'|LIST|VALUE=STRING"')]
+}]
+[h: seasonInput = seasonInput + json.toList(seasonStrings,",") + ")]"]
+
+[h: evalMacro(seasonInput)]
+
+[h: seasonDistribution = "[]"]
+[h, count(monthCount), code:{
+    [h: monthSeasons = json.append("[]",evalMacro("[r: seasonsMonth_"+roll.count+"]"))]
+    [h, if(evalMacro("[r: seasonsMonthAlt_"+roll.count+"]")!="None"), code:{
+        [h: monthSeasons = json.append(monthSeasons,evalMacro("[r: seasonsMonthAlt_"+roll.count+"]"))]
+    };{}]
+    [h: seasonDistribution = json.append(seasonDistribution, monthSeasons)]
+}]
+
+[h: calendarData = json.set(calendarData, "seasonDistribution", seasonDistribution)]
 
 
 [h: timeData = "{}"]
@@ -113,7 +137,7 @@
 [h: timeData = json.set(timeData, "currentMinute", 0)]
 [h: timeData = json.set(timeData, "currentSecond", 0)]
     
-[h: monthCount = json.length(json.get(calendar, "months"))]
+[h: monthCount = json.length(json.get(calendarData, "months"))]
 [h: htmlCaches = json.set("{}","yearValid",false)]
 [h, count(monthCount), code:{
     [h: htmlCaches = json.set(htmlCaches, "month_"+roll.count, json.set("{}","valid",false,"html",""))]
