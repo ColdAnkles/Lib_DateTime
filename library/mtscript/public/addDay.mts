@@ -30,3 +30,8 @@
 [h, if(json.get(macro.args,0)=="true"), code:{
 	[h: datetime.checkExpiry(oldTime, newTime)]
 };{}]
+
+[h, if(datetime.libraryLoaded("Lib:RLWeather")), code:{
+    [h: ca.rlw.WindMove()]
+    [h: ca.rlw.WeatherMove()]
+}]

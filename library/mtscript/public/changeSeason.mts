@@ -11,3 +11,7 @@
 
 [h: timeData = json.set(timeData, "currentSeason", seasonIndex)]
 [h: setLibProperty("timeData",timeData,"Lib:DateTime")]
+
+[h, if(datetime.libraryLoaded("Lib:RLWeather")), code:{
+    [h: ca.rlw.SetSeason(chosenSeason)]
+}]

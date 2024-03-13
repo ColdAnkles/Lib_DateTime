@@ -62,3 +62,12 @@
 [h: datetime.changeSeason()]
 [h: datetime.updateUI()]
 [h: datetime.checkExpiry(oldTime, datetime.now())]
+
+[h, if(datetime.libraryLoaded("Lib:RLWeather")), code:{
+    [h: ca.rlw.SetSeason(json.get(json.get(calendar, "seasons"),uSeason))]
+}]
+
+[h, if(datetime.libraryLoaded("Lib:RLWeather")), code:{
+    [h: ca.rlw.WindMove()]
+    [h: ca.rlw.WeatherMove()]
+}]
