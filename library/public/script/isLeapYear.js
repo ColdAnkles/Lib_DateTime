@@ -1,6 +1,6 @@
 "use strict";
 
-function isLeapYear(year){
+function isLeapYear(year) {
     let calendarData = JSON.parse(read_data("calendarData"));
     let leapYearFormula = calendarData.leapYearFormula;
     let isLeapYear = eval(leapYearFormula);

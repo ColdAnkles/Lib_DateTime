@@ -3,7 +3,7 @@
 function eventCheck(calendar, checkInput, events, year, month, day, hour, minute, second, output) {
 	for (var e in events[year][month][day][hour][minute][second]) {
 		let theEvent = events[year][month][day][hour][minute][second][e];
-		if (theEvent.expire && theEvent.expire!="false") {
+		if (theEvent.expire && theEvent.expire != "false") {
 			if (!output) {
 				MapTool.chat.broadcast("<b>The following events have expired:</b>");
 				output = true;
