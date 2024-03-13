@@ -18,6 +18,13 @@
     [h: setLibProperty("eventData", "{}", "Lib:DateTime")]
     [h: setLibProperty("overlayControls", true, "Lib:DateTime")]
     
+    [h: monthCount = json.length(json.get(getLibProperty("calendarData","Lib:DateTime"), "months"))]
+    [h: htmlCaches = json.set("{}","yearValid",false,"yearData","")]
+    [h, count(monthCount), code:{
+        [h: htmlCaches = json.set(htmlCaches, "month_"+roll.count, json.set("{}","valid",false,"html","","lastDay",0))]
+    }]
+    [h: setLibProperty("htmlCaches", htmlCaches, "Lib:DateTime")]
+    
     [h: datetime.SetDateTime()]
     [h: return(0)]
 };{}]
@@ -105,6 +112,13 @@
 [h: timeData = json.set(timeData, "currentHour", 0)]
 [h: timeData = json.set(timeData, "currentMinute", 0)]
 [h: timeData = json.set(timeData, "currentSecond", 0)]
+    
+[h: monthCount = json.length(json.get(calendar, "months"))]
+[h: htmlCaches = json.set("{}","yearValid",false)]
+[h, count(monthCount), code:{
+    [h: htmlCaches = json.set(htmlCaches, "month_"+roll.count, json.set("{}","valid",false,"html",""))]
+}]
+[h: setLibProperty("htmlCaches", htmlCaches, "Lib:DateTime")]
 
 [h: setLibProperty("calendarData", calendarData, "Lib:DateTime")]
 [h: setLibProperty("timeData", timeData, "Lib:DateTime")]

@@ -51,11 +51,13 @@
 [h: setLibProperty("timeData",time,"Lib:DateTime")]
 [h: setLibProperty("calendarData",calendar,"Lib:DateTime")]
 
+[h: htmlCaches = getLibProperty("htmlCaches", "Lib:DateTime")]
+[h: htmlCaches = json.set(htmlCaches, "yearValid", false, "allValid", false)]
+[h: setLibProperty("htmlCaches", htmlCaches, "Lib:DateTime")]
+
 [h: vis =  isFrameVisible("Calendar")]
 [h, if(vis), code:{
 	[MACRO("DrawCalendar@Lib:DateTime") : "{ParentToken:'Lib:DateTime'}"]
 }]
 [h: datetime.updateUI()]
 [h: datetime.checkExpiry(oldTime, datetime.now())]
-
-

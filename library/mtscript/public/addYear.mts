@@ -9,3 +9,7 @@
 [h, if(json.get(macro.args,0)=="true"), code:{
 	[h: datetime.checkExpiry(oldTime, newTime)]
 };{}]
+
+[h: htmlCaches = getLibProperty("htmlCaches", "Lib:DateTime")]
+[h: htmlCaches = json.set(htmlCaches, "allValid", false, "yearValid", false)]
+[h: setLibProperty("htmlCaches", htmlCaches, "Lib:DateTime")]
