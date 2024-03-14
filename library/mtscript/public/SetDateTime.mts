@@ -28,7 +28,6 @@
 "uYear | "+json.get(calendar,"calendarYear")+" | Year",
 "uMonth | "+json.toList(json.get(calendar,"months"),",")+" | Month | LIST | SELECT="+json.get(time,"monthOfYear"),
 "uDay | "+json.toList(dayArray)+" | Day of Month | LIST | SELECT="+json.get(time,"dayOfMonth")+"",
-"uSeason | "+json.toList(json.get(calendar,"seasons"),",")+" | Season | LIST | SELECT="+json.get(time,"currentSeason"),
 "uYearStart | "+json.toList(json.get(calendar,"dayNames"),",")+" | Year Starts On | LIST | SELECT="+json.get(calendar,"yearStartDay")
 )]
 
@@ -40,7 +39,6 @@
 [h: calendar=json.set(calendar,"calendarYear",uYear)]
 [h: time=json.set(time,"monthOfYear",uMonth)]
 [h: time=json.set(time,"dayOfMonth",uDay)]
-[h: time=json.set(time,"currentSeason",uSeason)]
 [h: calendar=json.set(calendar,"yearStartDay",uYearStart)]
 [h: lastYearStartDay = uYearStart-1]
 [h, if(lastYearStartDay==-1), code:{
