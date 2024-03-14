@@ -6,12 +6,21 @@
 	[h: return(0)]
 };{}]
 
+[h, if(json.type(macro.args) == "ARRAY"), code:{
+	[h: macro.args = json.get(macro.args, 0)]
+};{}]
+
 [h: events = getLibProperty("eventData","Lib:DateTime")]
 [h: calendar = getLibProperty("calendarData","Lib:DateTime")]
 [h: time = getLibProperty("timeData","Lib:DateTime")]
 
 [h: formHandler = macroLinkText("QuickEvent@Lib:DateTime", "none")]
 
+[h: "<!-- Integration Notes -->"]
+[h: "<!-- Argument is dictionary like: {'Save':'Save','setEventName':'New Quick Event','selectedNumber':10,'numberType':'Minutes'} -->"]
+[h: "<!-- Add 'setExpires' to enable expiry -->"]
+[h: "<!-- Add 'gmOnly' to enable expiry -->"]
+[h: "<!-- Add 'setDescription' to set a description -->"]
 [h, if(json.contains(macro.args,"Save")), code:{
 	[h: event = json.set("{}","expire",json.contains(macro.args,"setExpire"),"name",json.get(macro.args,"setEventName"),"description",json.get(macro.args,"setDescription"))]
 	[h: tempTime=datetime.noTime()]
