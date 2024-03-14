@@ -58,6 +58,13 @@
 	[h: yearEvents = json.set(yearEvents,month,monthEvents)]
 	[h: events = json.set(events,year,yearEvents)]
 	[h: setLibProperty("eventData",events,"Lib:DateTime")]
+
+	[h: htmlCaches = getLibProperty("htmlCaches", "Lib:DateTime")]
+	[h: monthCache = json.get(htmlCaches, "month_"+month)]
+	[h: monthCache = json.set(monthCache, "valid", false)]
+	[h: htmlCaches = json.set(htmlCaches, "month_"+month, monthCache,"allValid", false)]
+	[h: setLibProperty("htmlCaches", htmlCaches, "Lib:DateTime")]
+
 	[h: vis = isFrameVisible("Quick Event")]
 	[h, if(vis), code:{
 		[h: closeFrame("Quick Event")]

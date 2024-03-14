@@ -45,12 +45,12 @@
 	[h, if(vis), code:{
 		[h: closeFrame("Add New Event")]
 	};{}]
-	[h: datetime.updateUI(json.set("{}","eventRefresh",true,"day",day,"month",month,"year",year,"startDay",0))]
 	[h: htmlCaches = getLibProperty("htmlCaches", "Lib:DateTime")]
 	[h: monthCache = json.get(htmlCaches, "month_"+month)]
 	[h: monthCache = json.set(monthCache, "valid", false)]
 	[h: htmlCaches = json.set(htmlCaches, "month_"+month, monthCache,"allValid", false)]
 	[h: setLibProperty("htmlCaches", htmlCaches, "Lib:DateTime")]
+	[h: datetime.updateUI(json.set("{}","eventRefresh",true,"day",day,"month",month,"year",year,"startDay",0))]
 	[h: return(0)]
 };{}]
 
