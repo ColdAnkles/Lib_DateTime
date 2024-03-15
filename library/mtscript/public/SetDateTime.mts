@@ -62,6 +62,7 @@
 [h: datetime.checkExpiry(oldTime, datetime.now())]
 
 [h, if(datetime.libraryLoaded("Lib:RLWeather")), code:{
+	[h: uSeason = json.get(time,"currentSeason")]
     [h: ca.rlw.SetSeason(json.get(json.get(calendar, "seasons"),uSeason))]
 }]
 
