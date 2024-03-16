@@ -26,11 +26,13 @@
 		<input type="submit" style="height:20px; width:20px;" class="widget--button" value="-">
 	</form>
 };{
+	[r, if(isGM()), code:{
 	<form id="reveal-overlay-controls" action="[r:vFormHandler]">
 		<input type="hidden" style="height:0px; width:0px;" name="function" value="overlayControls">
 		<input type="hidden" style="height:0px; width:0px;" name="Arg0" value="true">
 		<input type="submit" style="height:20px; width:20px;" class="widget--button" value="+">
 	</form>
+	};{}]
 }]
 </td>
 <td style='background-color:black'>
