@@ -9,6 +9,8 @@
 [h: showOverlayControls = getLibProperty("overlayControls","Lib:DateTime")]
 [h, if(isGM()), code: {
 	[h: vFormHandler = macroLinkText("handleFormAction@Lib:DateTime", "none")]
+};{
+	[h: vFormHandler = ""]
 }]
 [h, if(dayNum>7), code:{
 	[h: dayNum=0]
