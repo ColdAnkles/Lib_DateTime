@@ -1,5 +1,7 @@
 [h: now = datetime.now()]
 [h: tomorrow = json.set(now,"hour",7)]
+[h: tomorrow = json.set(tomorrow, "minute",0)]
+[h: tomorrow = json.set(tomorrow, "second",0)]
 [h: tomorrow = json.set(tomorrow,"day",json.get(now,"day")+1)]
 [h: tomorrow = datetime.diffDateTime(tomorrow,now)]
 [h: arguments = json.set("{}","Advance","Advance","selectedNumber",json.get(tomorrow,"second"),"numberType","Seconds")]
