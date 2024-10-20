@@ -10,6 +10,21 @@
   * GM Only Events
   * Expiring Events with Automated Warnings on Expiry
 
+# Examples
+Overlay Time Display and GM Controls (Minimize Button for Controls to left)
+
+![image](https://github.com/user-attachments/assets/905a0bb9-1468-42c5-bb69-edcfa0e35bdc)
+
+Northern Hemisphere Earth Calendar, with Events (Highlight on current day, and on days with events) and auto season tracking
+
+![image](https://github.com/user-attachments/assets/94a49b03-d903-4c7a-b2ac-17afcf8de2eb)
+
+Standard GM Macros
+
+![image](https://github.com/user-attachments/assets/80009262-e437-4dd2-b0c5-3faa7130caf7)
+
+
+
 # Download
 Visit [the releases page](https://github.com/ColdAnkles/Lib_DateTime/releases) and download the version of the `.mtlib` file as desired.
 
