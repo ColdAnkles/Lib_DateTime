@@ -37,6 +37,6 @@
 [h: setLibProperty("preloadedCalendars", preloadedCalendars, "Lib:DateTime")]
 
 [h: datetime.setup()]
-[h: datetime.Create_GM_Macros()]
-[h: datetime.Create_Campaign_Macros()]
+[h: js.datetime.createGMMacros()]
+[h: js.datetime.createCampaignMacros()]
 [h: datetime.updateUI()]

@@ -23,14 +23,14 @@
 	<form id="hide-overlay-controls" action="[r:vFormHandler]">
 		<input type="hidden" style="height:0px; width:0px;" name="function" value="overlayControls">
 		<input type="hidden" style="height:0px; width:0px;" name="Arg0" value="false">
-		<input type="submit" style="height:20px; width:20px;" class="widget--button" value="-">
+		<input type="submit" style="height:20px; width:20px;font-family:Arial;" class="widget--button" value="-">
 	</form>
 };{
 	[r, if(isGM()), code:{
 	<form id="reveal-overlay-controls" action="[r:vFormHandler]">
 		<input type="hidden" style="height:0px; width:0px;" name="function" value="overlayControls">
 		<input type="hidden" style="height:0px; width:0px;" name="Arg0" value="true">
-		<input type="submit" style="height:20px; width:20px;" class="widget--button" value="+">
+		<input type="submit" style="height:20px; width:20px;font-family:Arial;" class="widget--button" value="+">
 	</form>
 	};{}]
 }]
@@ -45,32 +45,32 @@
 		<td><form id="sub-hour" action="[r:vFormHandler]">
 			<input type="hidden" name="function" value="subHour">
 			<input type="hidden" name="Arg0" value="false">
-			<input type="submit" class="widget--button" value="-H">
+			<input type="submit" style="font-family:Arial;" class="widget--button" value="-H">
 		</form></td>	
 		<td><form id="sub-minute" action="[r:vFormHandler]">
 			<input type="hidden" name="function" value="subMinute">
 			<input type="hidden" name="Arg0" value="false">
-			<input type="submit" class="widget--button" value="-m">
+			<input type="submit" style="font-family:Arial;" class="widget--button" value="-m">
 		</form></td>
 		<td><form id="sub-second" action="[r:vFormHandler]">
 			<input type="hidden" name="function" value="subSecond">
 			<input type="hidden" name="Arg0" value="false">
-			<input type="submit" class="widget--button" value="-s">
+			<input type="submit" style="font-family:Arial;" class="widget--button" value="-s">
 		</form></td>
 		<td><form id="plus-hour" action="[r:vFormHandler]">
 			<input type="hidden" name="function" value="addHour">
 			<input type="hidden" name="Arg0" value="true">
-			<input type="submit" class="widget--button" value="+H">
+			<input type="submit" style="font-family:Arial;" class="widget--button" value="+H">
 		</form></td>		
 		<td><form id="plus-hour" action="[r:vFormHandler]">
 			<input type="hidden" name="function" value="addMinute">
 			<input type="hidden" name="Arg0" value="true">
-			<input type="submit" class="widget--button" value="+m">
+			<input type="submit" style="font-family:Arial;" class="widget--button" value="+m">
 		</form></td>		
 		<td><form id="plus-hour" action="[r:vFormHandler]">
 			<input type="hidden" name="function" value="addSecond">
 			<input type="hidden" name="Arg0" value="true">
-			<input type="submit" class="widget--button" value="+s">
+			<input type="submit" style="font-family:Arial;" class="widget--button" value="+s">
 		</form></td>
 		</tr>
 	</table>
