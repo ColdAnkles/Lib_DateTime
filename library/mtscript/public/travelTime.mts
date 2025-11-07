@@ -10,9 +10,11 @@
 
 [h: abort(status)]
 
+[h: hexcount = 2]
+
 [h: hourPerMile = json.get(speedArray,uSpeed)/10]
 
-[h: travelHours = (miles/hourPerMile) * hexCount]
+[h: travelHours = (miles/hourPerMile) * (hexCount/2)]
 
 [h: travelMinutes = (((travelHours)-floor(travelHours)) * json.get(calendar,"minutePerHour")) ]
 [h: travelHours = floor(travelHours)]

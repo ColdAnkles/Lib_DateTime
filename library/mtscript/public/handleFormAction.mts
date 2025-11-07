@@ -3,7 +3,7 @@
 
 [h: "<!-- Validation -->"]
 [h: assert(vClicked == 0,	"handleFormAction(function[, args ...]) cannot be operated via macro button.")]
-[h: assert(json.type(macro.args) == "OBJECT", "buttonIndex"), "handleFormAction(function[, args ...]) must be passed a JSON Object with a 'function' key.")]
+[h: assert(json.type(macro.args) == "OBJECT", "buttonIndex", "handleFormAction(function[, args ...]) must be passed a JSON Object with a 'function' key.")]
 
 [h: 'broadcast("<pre>handleFormAction received:<br>" + json.indent(macro.args, 2) + "</pre>")']
 
