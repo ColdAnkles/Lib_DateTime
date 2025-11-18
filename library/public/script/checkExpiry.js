@@ -13,6 +13,9 @@ function eventCheck(calendar, checkInput, events, year, month, day, hour, minute
 			} else {
 				MapTool.chat.broadcast(String(theEvent.name));
 			}
+			if(theEvent.callBack != null){
+				MTScript.evalMacro(theEvent.callBack);
+			}
 		}
 	}
 	return output;

@@ -29,7 +29,9 @@
 <title>Events</title>
 </head>
 <body>
-<table width="100%">
+[h: formHandler = macroLinkText("AddEvent@Lib:DateTime", "none")]
+<form action="[r: formHandler]">
+	<table width="100%">
 	<tr>
 		<td colspan=3 valign="bottom" class="headingA">
 			Events for [r: json.get(dayNames,dayOfWeek)]
@@ -51,8 +53,6 @@
 			</td>
 		</tr>
 	}]
-	[h: formHandler = macroLinkText("AddEvent@Lib:DateTime", "none")]
-	<form action="[r: formHandler]">
 		<td colspan=3 class="headingA">
 			<input type="hidden" name="setYear" value=[r: json.get(macro.args,"year")]>
 			<input type="hidden" name="setMonth" value=[r: (json.get(macro.args,"month")+1)]>
@@ -61,8 +61,8 @@
 			<input type="hidden" name="setDescription" value="Event Description">			
 			<input type='submit' name='Refresh' value='Add Event'>
 		</td>
-	</form>
-</table>
+	</table>
+</form>
 </body>
 </html>
 }]

@@ -13,7 +13,6 @@
 [h: formHandler = macroLinkText("AddEvent@Lib:DateTime", "none")]
 
 [h, if(json.contains(macro.args,"Save")), code:{
-	[h: event = json.set("{}","expire",json.contains(macro.args,"setExpire"),"name",json.get(macro.args,"setEventName"),"description",json.get(macro.args,"setDescription"))]
 	[h: year=json.get(macro.args,"setYear")]
 	[h: month=json.get(macro.args,"setMonth")-1]
 	[h: day=json.get(macro.args,"setDay")-1]
@@ -32,7 +31,8 @@
 	[h, if(minuteEvents==""), code:{[h: minuteEvents="{}"]};{}]
 	[h: secondEvents = json.get(minuteEvents,strformat("%02d",second))]
 	[h, if(secondEvents==""), code:{[h: secondEvents="[]"]};{}]
-	[h: event = json.set(event,"name",json.get(macro.args,"setEventName"),"description",json.get(macro.args,"setDescription"),"expire",if(json.contains(macro.args,"setExpires"),"true","false"),"gmOnly",if(json.contains(macro.args,"gmOnly"),"true","false"))]
+	[h: callBack = if(json.contains(macro.args,"callBack"),json.get(macro.args,"callBack"),json.null)]
+	[h: event = json.set("{}","name",json.get(macro.args,"setEventName"),"description",json.get(macro.args,"setDescription"),"expire",if(json.contains(macro.args,"setExpire"),"true","false"),"gmOnly",if(json.contains(macro.args,"gmOnly"),"true","false"),"callBack",callBack)]
 	[h: secondEvents = json.append(secondEvents,event)]
 	[h: minuteEvents = json.set(minuteEvents,strformat("%02d",second),secondEvents)]
 	[h: hourEvents = json.set(hourEvents,strformat("%02d",minute),minuteEvents)]
