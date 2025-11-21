@@ -113,7 +113,7 @@ Displays and permits editing the name, description, and expire/gm options.
 				</tr>
 				<tr class="headingA">
 					[h: eventExpires=json.get(event,"expire")]
-					<td>Expires:</td><td>[r, if(editMode), code:{[r: "<input type='checkbox' name='expires' value='expires'"+if(eventExpires=="true","checked='checked'","")+">"]};{[r: if(eventExpires=="true","Yes","No")]}]</td>
+					<td><span title="Print a chat Message when the event passes.">Notify</span>:</td><td>[r, if(editMode), code:{[r: "<input type='checkbox' name='expires' value='expires'"+if(eventExpires=="true","checked='checked'","")+">"]};{[r: if(eventExpires=="true","Yes","No")]}]</td>
 				</tr>
 				<tr class="headingB">
 					[h: isGmOnly=json.get(event,"gmOnly")]

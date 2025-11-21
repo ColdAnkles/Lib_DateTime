@@ -120,7 +120,7 @@
 						</select></td>
 					</tr>
 					<tr class="headingB">
-						<td colspan=3>Expires:</td>
+						<td colspan=3><span title="Print a chat Message when the event passes.">Notify</span>:</td>
 						<td colspan=3><input type="checkbox" name="setExpire" [r: if(setExpire=="on","checked='checked'","")]></td>
 					</tr>
 					<tr class="headingB">
