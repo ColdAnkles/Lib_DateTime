@@ -8,4 +8,4 @@ function create_macroLink(text, link, args) {
 	return MTScript.getVariable("linkText")
 }
 
-MTScript.registerMacro("ca.pf2e.create_macroLink", create_macroLink);
+MTScript.registerMacro("datetime.create_macroLink", create_macroLink);

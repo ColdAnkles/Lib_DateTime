@@ -103,6 +103,7 @@ Displays and permits editing the name, description, and expire/gm options.
 			<input type="hidden" name="oldArgs" value=[r: if(json.contains(macro.args,"oldArgs"),json.get(macro.args,"oldArgs"),macro.args)]>
 			<input type="hidden" name="callBack" value=[r: json.get(event,"callBack")]>
 			<input type="hidden" name="autoDelete" value=[r: json.get(event,"autoDelete")]>
+			<input type="hidden" name="uid" value=[r: json.get(event,"uid")]>
 			<table width="100%">
 				<tr>
 					<td class="headingA" colspan=2>[r: if(editMode,"<input type='text' name='eventName' value='"+ json.get(event,"name")+"'>",json.get(event,"name"))]</td>

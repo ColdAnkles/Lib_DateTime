@@ -33,7 +33,8 @@
 	[h, if(secondEvents==""), code:{[h: secondEvents="[]"]};{}]
 	[h: callBack = if(json.contains(macro.args,"callBack"),json.get(macro.args,"callBack"),json.null)]
 	[h: autoDelete = if(json.contains(macro.args,"autoDelete"),json.get(macro.args,"autoDelete"),json.false)]
-	[h: event = json.set("{}","name",json.get(macro.args,"setEventName"),"description",json.get(macro.args,"setDescription"),"expire",if(json.contains(macro.args,"setExpire"),"true","false"),"gmOnly",if(json.contains(macro.args,"gmOnly"),"true","false"),"callBack",callBack,"autoDelete",autoDelete)]
+	[h: uid = js.datetime.generateUID()]
+	[h: event = json.set("{}","name",json.get(macro.args,"setEventName"),"description",json.get(macro.args,"setDescription"),"expire",if(json.contains(macro.args,"setExpire"),"true","false"),"gmOnly",if(json.contains(macro.args,"gmOnly"),"true","false"),"callBack",callBack,"autoDelete",autoDelete,"uid",uid)]
 	[h: secondEvents = json.append(secondEvents,event)]
 	[h: minuteEvents = json.set(minuteEvents,strformat("%02d",second),secondEvents)]
 	[h: hourEvents = json.set(hourEvents,strformat("%02d",minute),minuteEvents)]
@@ -66,6 +67,8 @@
 	[h: setSecond=json.get(macro.args,"setSecond")]
 	[h: setExpire=json.get(macro.args,"setExpire")]
 	[h: isGmOnly=json.get(macro.args,"gmOnly")]
+	[h: callBack=json.get(macro.args,"callBack")]
+	[h: autoDelete=json.get(macro.args,"autoDelete")]
 };{
 	[h: setEventName="New Event"]
 	[h: setDescription="Event Description"]
@@ -77,6 +80,8 @@
 	[h: setSecond=(json.get(time,"currentSecond"))]
 	[h: setExpire="off"]
 	[h: isGmOnly="false"]
+	[h: callBack="false"]
+	[h: autoDelete="false"]
 }]
 
 [frame5("Add New Event","width=400;height=200"):{
@@ -86,6 +91,8 @@
 		</head>
 		<body>
 			<form id="newEvent" action="[r: formHandler]">
+			<input type="hidden" name="callBack" value=[r: callBack]>
+			<input type="hidden" name="autoDelete" value=[r: autoDelete]>
 				<table width="100%">
 					<tr class="headingA"><td colspan=6><input type="text" name="setEventName" value="[r:setEventName]"></td></tr>
 					<tr><td colspan=6><textarea name="setDescription" cols=50 rows=4>[r:setDescription]</textarea></td></tr>

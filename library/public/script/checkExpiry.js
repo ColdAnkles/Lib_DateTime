@@ -17,7 +17,14 @@ function eventCheck(calendar, checkInput, events, year, month, day, hour, minute
 				MTScript.evalMacro(theEvent.callBack);
 			}
 			if(theEvent.autoDelete != null && theEvent.autoDelete){
-				//Something
+				let delEvents = read_data("deleteEvents");
+				if (delEvents == null || delEvents.length==0 || delEvents == "\"\""){
+					delEvents = [theEvent.uid];
+				}else{
+					delEvents = JSON.parse(delEvents);
+					delEvents.push(theEvent.uid);
+				}
+				write_data("deleteEvents", JSON.stringify(delEvents));
 			}
 		}
 	}
