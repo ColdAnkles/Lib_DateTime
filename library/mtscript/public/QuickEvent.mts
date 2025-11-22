@@ -22,6 +22,7 @@
 [h: "<!-- Add 'gmOnly' to enable expiry -->"]
 [h: "<!-- Add 'setDescription' to set a description -->"]
 [h: "<!-- Add 'callBack' to set a callBack -->"]
+[h: "<!-- Add 'autoDelete' to set a callBack -->"]
 [h, if(json.contains(macro.args,"Save")), code:{
 	[h: tempTime=datetime.noTime()]
 	[h: tempString=lower(json.get(macro.args,"numberType"))]
@@ -47,7 +48,8 @@
 	[h: secondEvents = json.get(minuteEvents,strformat("%02d",second))]
 	[h, if(secondEvents==""), code:{[h: secondEvents="[]"]};{}]
 	[h: callBack = if(json.contains(macro.args,"callBack"),json.get(macro.args,"callBack"),json.null)]
-	[h: event = json.set("{}","name",json.get(macro.args,"setEventName"),"description",json.get(macro.args,"setDescription"),"expire",if(json.contains(macro.args,"setExpire"),"true","false"),"gmOnly",if(json.contains(macro.args,"gmOnly"),"true","false"),"callBack",callBack)]
+	[h: autoDelete = if(json.contains(macro.args,"autoDelete"),json.get(macro.args,"autoDelete"),json.false)]
+	[h: event = json.set("{}","name",json.get(macro.args,"setEventName"),"description",json.get(macro.args,"setDescription"),"expire",if(json.contains(macro.args,"setExpire"),"true","false"),"gmOnly",if(json.contains(macro.args,"gmOnly"),"true","false"),"callBack",callBack,"autoDelete",autoDelete)]
 	[h: secondEvents = json.append(secondEvents,event)]
 	[h: minuteEvents = json.set(minuteEvents,strformat("%02d",second),secondEvents)]
 	[h: hourEvents = json.set(hourEvents,strformat("%02d",minute),minuteEvents)]

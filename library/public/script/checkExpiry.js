@@ -16,6 +16,9 @@ function eventCheck(calendar, checkInput, events, year, month, day, hour, minute
 			if(theEvent.callBack != null){
 				MTScript.evalMacro(theEvent.callBack);
 			}
+			if(theEvent.autoDelete != null && theEvent.autoDelete){
+				//Something
+			}
 		}
 	}
 	return output;
