@@ -13,14 +13,14 @@ function eventCheck(calendar, checkInput, events, year, month, day, hour, minute
 			} else {
 				MapTool.chat.broadcast(String(theEvent.name));
 			}
-			if(theEvent.callBack != null){
+			if (theEvent.callBack != null) {
 				MTScript.evalMacro(theEvent.callBack);
 			}
-			if(theEvent.autoDelete != null && theEvent.autoDelete){
+			if (theEvent.autoDelete != null && theEvent.autoDelete) {
 				let delEvents = read_data("deleteEvents");
-				if (delEvents == null || delEvents.length==0 || delEvents == "\"\""){
+				if (delEvents == null || delEvents.length == 0 || delEvents == "\"\"") {
 					delEvents = [theEvent.uid];
-				}else{
+				} else {
 					delEvents = JSON.parse(delEvents);
 					delEvents.push(theEvent.uid);
 				}
