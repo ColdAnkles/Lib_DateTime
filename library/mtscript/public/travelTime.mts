@@ -22,7 +22,7 @@
 [h: travelSeconds = floor((travelMinutes-floor(travelMinutes)) * json.get(calendar,"secondPerMinute"))]
 [h: travelMinutes = floor(travelMinutes)]
 
-[h: broadcast("At a speed of "+json.get(speedArray,uSpeed)+" feet, Travelling One Hex takes: "+ travelHours +" hours, "+travelMinutes+" minutes, "+travelSeconds +" seconds.")]
+[h: broadcast("At a speed of "+json.get(speedArray,uSpeed)+" feet, Travelling " + miles + " miles takes: "+ travelHours +" hours, "+travelMinutes+" minutes, "+travelSeconds +" seconds.")]
 
 [h: arguments = json.set("{}","Advance","Advance","selectedNumber",travelHours,"numberType","Hours")]
 [h, MACRO("AdvanceTime@Lib:DateTime"):arguments]
