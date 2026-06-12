@@ -4,14 +4,16 @@ function eventCheck(calendar, checkInput, events, year, month, day, hour, minute
 	for (var e in events[year][month][day][hour][minute][second]) {
 		let theEvent = events[year][month][day][hour][minute][second][e];
 		if (theEvent.expire && theEvent.expire != "false") {
-			if (!output) {
-				MapTool.chat.broadcast("<b>The following events have passed:</b>");
-				output = true;
-			}
-			if (theEvent.gmOnly == "true") {
-				MapTool.chat.broadcastToGM(String(theEvent.name));
-			} else {
-				MapTool.chat.broadcast(String(theEvent.name));
+			if (!theEvent.silent) {
+				if (!output) {
+					MapTool.chat.broadcast("<b>The following events have passed:</b>");
+					output = true;
+				}
+				if (theEvent.gmOnly == "true") {
+					MapTool.chat.broadcastToGM(String(theEvent.name));
+				} else {
+					MapTool.chat.broadcast(String(theEvent.name));
+				}
 			}
 			if (theEvent.callBack != null) {
 				MTScript.evalMacro(theEvent.callBack);

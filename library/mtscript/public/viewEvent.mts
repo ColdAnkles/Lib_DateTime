@@ -66,7 +66,7 @@ Displays and permits editing the name, description, and expire/gm options.
 
 [h, if(json.contains(macro.args,"Save")), code:{
 	[h: oldName = json.get(event,"name")]
-	[h: event = json.set(event,"name",json.get(macro.args,"eventName"),"description",json.get(macro.args,"description"),"expire",if(json.contains(macro.args,"expires"),"true","false"),"gmOnly",if(json.contains(macro.args,"gmOnly"),"true","false"),"callBack",json.get(macro.args,"callBack"),"autoDelete",json.get(macro.args,"autoDelete"))]
+	[h: event = json.set(event,"name",json.get(macro.args,"eventName"),"description",json.get(macro.args,"description"),"expire",if(json.contains(macro.args,"expires"),"true","false"),"gmOnly",if(json.contains(macro.args,"gmOnly"),"true","false"),"silent",json.get(macro.args,"silent"),"callBack",json.get(macro.args,"callBack"),"autoDelete",json.get(macro.args,"autoDelete"))]
 	[h: secondEvents = json.set(secondEvents,eventIndex,event)]
 	[h: minuteEvents = json.set(minuteEvents,strformat("%02d",second),secondEvents)]
 	[h: hourEvents = json.set(hourEvents,strformat("%02d",minute),minuteEvents)]
@@ -102,6 +102,7 @@ Displays and permits editing the name, description, and expire/gm options.
 			<form id="eventView" action="[r: formHandler]">
 			<input type="hidden" name="oldArgs" value=[r: if(json.contains(macro.args,"oldArgs"),json.get(macro.args,"oldArgs"),macro.args)]>
 			<input type="hidden" name="callBack" value=[r: json.get(event,"callBack")]>
+			<input type="hidden" name="silent" value=[r: json.get(event,"silent")]>
 			<input type="hidden" name="autoDelete" value=[r: json.get(event,"autoDelete")]>
 			<input type="hidden" name="uid" value=[r: json.get(event,"uid")]>
 			<table width="100%">
