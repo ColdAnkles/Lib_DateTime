@@ -70,6 +70,7 @@ function deleteEvents() {
         }
     }
     write_data("eventData",JSON.stringify(eventData));
+    write_data("deleteEvents",JSON.stringify([]));
 }
 
 MTScript.registerMacro("datetime.deleteEvents", deleteEvents);

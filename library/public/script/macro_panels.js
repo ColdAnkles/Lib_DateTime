@@ -3,7 +3,7 @@
 function createGMMacros() {
     let GMMacros = [{ "label": "<b>Calendar</b>", "playerEditable": 0, "command": "[macro(\"DrawCalendar@lib:datetime\"): \"\"]", "tooltip": "Open the Calendar", "color": "black", "fontColor": "white", "fontSize": "1.25em" },
     { "label": "+10 Min", "playerEditable": 0, "command": "[h: arguments = json.set(\"{}\",\"Advance\",\"Advance\",\"selectedNumber\",10,\"numberType\",\"Minutes\")][h, MACRO(\"AdvanceTime@Lib:DateTime\"):arguments]", "tooltip": "Add 10 minutes" },
-    { "label": "Round Time", "playerEditable": 0, "command": "[h: arguments = json.set(\"{}\",\"Advance\",\"Advance\",\"selectedNumber\",6,\"numberType\",\"Seconds\")][h, MACRO(\"AdvanceTime@Lib:DateTime\"):arguments]", "tooltip": "Add six seconds" },
+    { "label": "+6 Sec", "playerEditable": 0, "command": "[h: arguments = json.set(\"{}\",\"Advance\",\"Advance\",\"selectedNumber\",6,\"numberType\",\"Seconds\")][h, MACRO(\"AdvanceTime@Lib:DateTime\"):arguments]", "tooltip": "Add six seconds" },
     { "label": "Add Event", "playerEditable": 0, "command": "[h: datetime.AddEvent()]", "tooltip": "Add Event to Calendar" },
     { "label": "Advance Time", "playerEditable": 0, "command": "[h: datetime.AdvanceTime()]", "tooltip": "Advance Time" },
     { "label": "Advance to Tomorrow", "playerEditable": 0, "command": "[h: datetime.advanceToTomorrow()]", "tooltip": "Advance Time until Next Morning" },
