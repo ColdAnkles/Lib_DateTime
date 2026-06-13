@@ -96,7 +96,7 @@ Displays and permits editing the name, description, and expire/gm options.
 [frame5(json.get(event,"name"),"width=300;height=300"):{
 	<html>
 		<head>
-			<link rel="stylesheet" type="text/css" href="lib://DateTime/macro/eventCSS?cachelib=false">
+			<style>[r: js.datetime.getEventCSS()]</style>
 		</head>
 		<body>
 			<form id="eventView" action="[r: formHandler]">

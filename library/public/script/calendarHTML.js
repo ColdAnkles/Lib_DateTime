@@ -84,7 +84,7 @@ function calendarHTML() {
     }
     //MapTool.chat.broadcast("Generating Year HTML");
 
-    let outputHTML = "<html><head><link rel='stylesheet' type='text/css' href='calendarCSS@Lib:DateTime'>";
+    let outputHTML = "<html><head><style>"+getCalendarCSS()+"</style>";
     outputHTML += "<title>Calendar</title></head><body>";
     outputHTML += "<table width='100%'>";
     outputHTML += "<tr><td colspan=" + String(calendarRows) + " valign='bottom' class='headingA'>Calendar</td></tr>";

@@ -25,7 +25,7 @@
 [frame5("Events", "width=300;height=900"):{
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="eventCSS@Lib:DateTime">
+<style>[r: js.datetime.getEventCSS()]</style>
 <title>Events</title>
 </head>
 <body>

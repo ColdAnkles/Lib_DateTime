@@ -9,6 +9,9 @@ function createGMMacros() {
     { "label": "Advance to Tomorrow", "playerEditable": 0, "command": "[h: datetime.advanceToTomorrow()]", "tooltip": "Advance Time until Next Morning" },
     { "label": "Quick Event", "playerEditable": 0, "command": "[h: datetime.QuickEvent()]", "tooltip": "Add Event Quickly" },
     { "label": "Set Date/Time", "playerEditable": 0, "command": "[h: datetime.SetDateTime()]", "tooltip": "Set Date and Time as Desired" },
+    { "label": "Change Theme", "playerEditable": 0, "command": "[h: js.datetime.changeActiveTheme()]", "tooltip": "Change Calendar Theme" },
+    { "label": "New Theme", "playerEditable": 0, "command": "[h: js.datetime.editTheme()]", "tooltip": "Create New Calendar Theme" },
+    { "label": "Edit Theme", "playerEditable": 0, "command": "[h: js.datetime.editThemeStart()]", "tooltip": "A Calendar Theme" },
     { "label": "Travel", "playerEditable": 0, "command": "[h: datetime.travelTime()]", "tooltip": "Add time based on travel distance and speed" }];
     for (var m in GMMacros) {
         createMacro(GMMacros[m], "gm");
