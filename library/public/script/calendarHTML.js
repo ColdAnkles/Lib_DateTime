@@ -115,6 +115,7 @@ function calendarHTML() {
     cachedHTML.allValid = true;
     write_data("htmlCaches", JSON.stringify(cachedHTML));
 
+    //MapTool.chat.broadcast(outputHTML.replaceAll("<","&lt;"))
     return outputHTML;
 }
 

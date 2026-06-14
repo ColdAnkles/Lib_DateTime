@@ -36,8 +36,8 @@
 
 [h: setLibProperty("preloadedCalendars", preloadedCalendars, "Lib:DateTime")]
 
-[h: setLibProperty("activeTheme", "default", "Lib:DateTime")]
-[h: themeData = json.set("{}", "default", json.set("{}","currentDayBG","#c4a5f2", "otherDayBG","#ffe2aa","eventDayBG","#ABC7FF","headingABG","#3A1E1A","headingBBG","#f2825a","dayRowBG","#36648B","dayRowText","white","buttonRowBG","#36648B","eventDayText","white","headingAText","white","headingBText","white","buttonRowText","white"))]
+[h: setLibProperty("activeTheme", "Default", "Lib:DateTime")]
+[h: themeData = json.set("{}", "Default", json.set("{}","bodyBackground","#ece9d8","bodyTextColour","black","currentDayBG","#c4a5f2", "otherDayBG","#ffe2aa","eventDayBG","#ABC7FF","headingABG","#3A1E1A","headingBBG","#f2825a","dayRowBG","#36648B","dayRowText","white","buttonRowBG","#36648B","eventDayText","white","headingAText","white","headingBText","white","buttonRowText","white"))]
 [h: setLibProperty("themeData", themeData, "Lib:DateTime")]
 
 [h: datetime.setup()]

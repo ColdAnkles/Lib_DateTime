@@ -11,11 +11,13 @@ function getCalendarCSS() {
 	}\
 	\
 	body{\
-		font-size:12pt\
+		font-size:12pt;\
+		background-color: " + themeData.bodyBackground + ";\
+		color: " + themeData.bodyTextColour + ";\
 	}\
 	\
 	table, th, td {\
-	border: 0px solid black;\
+		border: 0px solid black;\
 	}\
 	\
 	table.fullheight {\

@@ -1,9 +1,16 @@
 "use strict";
 
-function addTheme(addThemeName, addThemeData) {
+function saveTheme(addThemeData) {
     let themeData = JSON.parse(read_data("themeData"));
-    let newTheme = themeData["default"];
+    let newTheme = themeData["Default"];
 
+    newTheme.themeName = addThemeData.themeName;
+    if ("bodyBackground" in addThemeData) {
+        newTheme.bodyBackground = addThemeData.bodyBackground;
+    }
+    if ("bodyTextColour" in addThemeData) {
+        newTheme.bodyTextColour = addThemeData.bodyTextColour;
+    }
     if ("currentDayBG" in addThemeData) {
         newTheme.currentDayBG = addThemeData.currentDayBG;
     }
@@ -37,12 +44,19 @@ function addTheme(addThemeName, addThemeData) {
     if ("buttonRowText" in addThemeData) {
         newTheme.buttonRowText = addThemeData.buttonRowText;
     }
+    if ("dayRowText" in addThemeData) {
+        newTheme.dayRowText = addThemeData.dayRowText;
+    }
 
-    themeData[addThemeName] = newTheme;
+    themeData[newTheme.themeName] = newTheme;
     write_data("themeData", JSON.stringify(themeData));
+    let activeTheme = read_data("activeTheme");
+    if (activeTheme == editTheme.themeName) {
+        expire_calendar_cache();
+    }
 }
 
-MTScript.registerMacro("datetime.addTheme", addTheme);
+MTScript.registerMacro("datetime.saveTheme", saveTheme);
 
 function removeTheme(removeThemeName) {
     let themeData = JSON.parse(read_data("themeData"));
@@ -52,7 +66,7 @@ function removeTheme(removeThemeName) {
     delete themeData[removeThemeName];
     let activeTheme = read_data("activeTheme");
     if (activeTheme == removeThemeName) {
-        write_data("activeTheme", "default");
+        write_data("activeTheme", "Default");
     }
     write_data("themeData", JSON.stringify(themeData));
 }
@@ -73,22 +87,20 @@ function changeActiveTheme() {
     }
 
     MTScript.evalMacro("[h: ans = input(\"changeTheme|" + availableThemes.join(",") + "|Choose Theme|LIST|VALUE=STRING\")]");
-    let changeTheme = MTScript.getVariable("changeTheme");
-    write_data("activeTheme", changeTheme);
-    let htmlCaches = JSON.parse(read_data("htmlCaches"));
-    htmlCaches.allValid = false;
-    htmlCaches.yearValid = false;
-    htmlCaches.yearData = "";
-    for (var m in htmlCaches){
-        if (m.includes("month_")){
-            htmlCaches[m].valid = false;
-            htmlCaches[m].html = "";
-        }
-    }
-    write_data("htmlCaches", JSON.stringify(htmlCaches));
+    setActiveTheme(MTScript.getVariable("changeTheme"));
 }
 
 MTScript.registerMacro("datetime.changeActiveTheme", changeActiveTheme);
+
+function setActiveTheme(themeName) {
+    let themeData = JSON.parse(read_data("themeData"));
+    if (themeName in themeData) {
+        write_data("activeTheme", themeName);
+        expire_calendar_cache();
+    }
+}
+
+MTScript.registerMacro("datetime.setActiveTheme", setActiveTheme);
 
 function editThemeStart() {
     let themeData = JSON.parse(read_data("themeData"));
@@ -96,38 +108,55 @@ function editThemeStart() {
     let availableThemes = [];
 
     for (var t in themeData) {
+        if (t == "Default") {
+            continue;
+        }
         availableThemes.push(t);
     }
 
-    if (availableThemes.length <= 1) {
+    let eT = null;
+    if (availableThemes.length == 0) {
         return;
+    } else if (availableThemes.length == 1) {
+        eT = availableThemes[0];
+    } else {
+        MTScript.evalMacro("[h: ans = input(\"editTheme|" + availableThemes.join(",") + "|Edit Theme|LIST|VALUE=STRING\")]");
+        eT = MTScript.getVariable("editTheme");
     }
-
-    MTScript.evalMacro("[h: ans = input(\"editTheme|" + availableThemes.join(",") + "|Edit Theme|LIST|VALUE=STRING\")]");
-    let eT = MTScript.getVariable("editTheme");
     let editThemeData = themeData[eT];
     editTheme(editThemeData);
 }
 
 MTScript.registerMacro("datetime.editThemeStart", editThemeStart);
 
+function deleteTheme(themeName){
+    let themeData = JSON.parse(read_data("themeData"));
+    delete themeData[themeName];
+    write_data("themeData", JSON.stringify(themeData));
+}
+
+MTScript.registerMacro("datetime.deleteTheme", deleteTheme);
+
 function editTheme(editTheme = null) {
     let themeData = JSON.parse(read_data("themeData"));
     if (editTheme == null) {
-        editTheme = themeData["default"];
+        editTheme = themeData["Default"];
         editTheme.themeName = "New Theme";
+    }
+    
+    if (!("oldThemeName" in editTheme)){
+        editTheme.oldThemeName = editTheme.themeName;
     }
 
     if ("Save" in editTheme) {
-        editTheme = JSON.parse(JSON.stringify(editTheme));
-        delete editTheme.Save;
-        themeData[editTheme.themeName] = editTheme;
-        write_data("themeData", JSON.stringify(themeData));
+        saveTheme(editTheme);
+        if ("oldThemeName" in editTheme && editTheme.oldThemeName != editTheme.themeName){
+            deleteTheme(editTheme.oldThemeName);
+        }
         return;
     } else if ("Delete" in editTheme) {
         if (editTheme.name in themeData) {
-            delete themeData[editTheme.name];
-            write_data("themeData", JSON.stringify(themeData));
+            deleteTheme(editTheme.name);
         }
         return;
     } else if ("Close" in editTheme) {
@@ -137,8 +166,10 @@ function editTheme(editTheme = null) {
     let frameHTML = "<html><body>";
 
     frameHTML += "<form id=\"eventView\" action=\"macro://ThemeEditorFormHandler@Lib:DateTime/none/Impersonated?\"><table>";
-
+    frameHTML += "<input type='hidden' name='oldThemeName' value='" + editTheme.oldThemeName + "'>";
     frameHTML += "<tr><td><b>Theme Name</b></td><td><input type='text' name='themeName' value='" + editTheme.themeName + "'></td></tr>";
+    frameHTML += "<tr><td><b>Body Background</b></td><td><input type='text' name='bodyBackground' value='" + editTheme.bodyBackground + "'></td></tr>";
+    frameHTML += "<tr><td><b>Body Text Colour</b></td><td><input type='text' name='bodyTextColour' value='" + editTheme.bodyTextColour + "'></td></tr>";
     frameHTML += "<tr><td><b>Current Day Background</b></td><td><input type='text' name='currentDayBG' value='" + editTheme.currentDayBG + "'></td></tr>";
     frameHTML += "<tr><td><b>Other Day Background</b></td><td><input type='text' name='otherDayBG' value='" + editTheme.otherDayBG + "'></td></tr>";
     frameHTML += "<tr><td><b>Event Day Background</b></td><td><input type='text' name='eventDayBG' value='" + editTheme.eventDayBG + "'></td></tr>";
