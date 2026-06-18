@@ -9,31 +9,31 @@ function getCalendarCSS() {
     p{\
 		text-align:left;\
 	}\
-	\
 	body{\
 		font-size:12pt;\
 		background-color: " + themeData.bodyBackground + ";\
 		color: " + themeData.bodyTextColour + ";\
 	}\
-	\
 	table, th, td {\
 		border: 0px solid black;\
 	}\
-	\
 	table.fullheight {\
 		height:100%;\
 	}\
-	\
 	.currentDay {\
 		background-color: " + themeData.currentDayBG + ";\
 		text-align:center;\
 	}\
-	\
+	.currentDay a {\
+		color: " + themeData.currentDayText + ";\
+	}\
 	.otherDay {\
 		text-align:center;\
 		background-color: "+ themeData.otherDayBG + ";\
 	}\
-	\
+	.otherDay a {\
+		color: "+ themeData.otherDayText + ";\
+	}\
 	.eventDay{\
 		background-color:"+ themeData.eventDayBG + ";\
 		text-align:center;\
@@ -41,7 +41,9 @@ function getCalendarCSS() {
 		font-weight:bold;\
 		font-size:14pt;\
 	}\
-	\
+	.eventDay a{\
+		color: "+ themeData.currentDayText + ";\
+	}\
 	.headingA {\
 		background-color:"+ themeData.headingABG + ";\
 		text-align:center;\
@@ -49,7 +51,6 @@ function getCalendarCSS() {
 		font-weight:bold;\
 		font-size:14pt;\
 	}\
-	\
 	.headingB {\
 		background-color:"+ themeData.headingBBG + ";\
 		text-align:center;\
@@ -57,7 +58,6 @@ function getCalendarCSS() {
 		font-weight:bold;\
 		font-size:14pt;\
 	}\
-	\
 	.dayRow {\
 		background-color:"+ themeData.dayRowBG + ";\
 		text-align:center;\

@@ -47,7 +47,7 @@
 			<td class="headingB">
 				[r: strformat("%02d",hour)]
 			</td>
-			<td>
+			<td class="eventCell">
 				[h: hourData = json.set("{}", "hourEvents",json.get(todayEvents,strformat("%02d",hour)),"year",json.get(macro.args,"year"),"month",json.get(macro.args,"month"),"day",json.get(macro.args,"day"),"startDay",json.get(macro.args,"startDay"),"hour",strformat("%02d",hour))]
 				[MACRO("DrawHourEvents@Lib:DateTime"):hourData]
 			</td>

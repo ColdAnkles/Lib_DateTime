@@ -17,6 +17,7 @@
 };{}]
 [overlay("timedateOverlay"): { 
 <html>
+<style>[r: js.datetime.getOverlayCSS()]</style>
 <table style='margin-left:auto;margin-right:auto;overflow:auto'><tr >
 <td style='font-size: 0;'>
 [r, if(isGM() && showOverlayControls),code:{
@@ -35,8 +36,8 @@
 	};{}]
 }]
 </td>
-<td style='background-color:black'>
-<p style='color:white;text-align:center'>
+<td class='overlayTime'>
+<p>
 [r: json.get(dayNames,dayNum)], [r: json.get(time,"dayOfMonth")+1] of [r: json.get(json.get(calendar,"months"),number(json.get(time,"monthOfYear")))] [r: json.get(calendar, "calendarYear")], [r: strformat("%02d",json.get(time,"currentHour"))]:[r:strformat("%02d",json.get(time,"currentMinute"))]:[r:strformat("%02d",json.get(time,"currentSecond"))]
 </p></td></tr></table>
 [r, if(isGM() && showOverlayControls), code: {

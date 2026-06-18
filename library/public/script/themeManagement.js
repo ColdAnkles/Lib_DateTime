@@ -2,7 +2,7 @@
 
 function saveTheme(addThemeData) {
     let themeData = JSON.parse(read_data("themeData"));
-    let newTheme = themeData["Default"];
+    let newTheme = JSON.parse(JSON.stringify(themeData["Default"]));
 
     newTheme.themeName = addThemeData.themeName;
     if ("bodyBackground" in addThemeData) {
@@ -14,8 +14,14 @@ function saveTheme(addThemeData) {
     if ("currentDayBG" in addThemeData) {
         newTheme.currentDayBG = addThemeData.currentDayBG;
     }
+    if ("currentDayText" in addThemeData) {
+        newTheme.currentDayText = addThemeData.currentDayText;
+    }
     if ("otherDayBG" in addThemeData) {
         newTheme.otherDayBG = addThemeData.otherDayBG;
+    }
+    if ("otherDayText" in addThemeData) {
+        newTheme.otherDayText = addThemeData.otherDayText;
     }
     if ("eventDayBG" in addThemeData) {
         newTheme.eventDayBG = addThemeData.eventDayBG;
@@ -46,6 +52,12 @@ function saveTheme(addThemeData) {
     }
     if ("dayRowText" in addThemeData) {
         newTheme.dayRowText = addThemeData.dayRowText;
+    }
+    if ("overlayBG" in addThemeData) {
+        newTheme.overlayBG = addThemeData.overlayBG;
+    }
+    if ("overlayText" in addThemeData) {
+        newTheme.overlayText = addThemeData.overlayText;
     }
 
     themeData[newTheme.themeName] = newTheme;
@@ -88,6 +100,8 @@ function changeActiveTheme() {
 
     MTScript.evalMacro("[h: ans = input(\"changeTheme|" + availableThemes.join(",") + "|Choose Theme|LIST|VALUE=STRING\")]");
     setActiveTheme(MTScript.getVariable("changeTheme"));
+    expire_calendar_cache();
+    MTScript.evalMacro("[h: datetime.updateUI()]");
 }
 
 MTScript.registerMacro("datetime.changeActiveTheme", changeActiveTheme);
@@ -129,7 +143,10 @@ function editThemeStart() {
 
 MTScript.registerMacro("datetime.editThemeStart", editThemeStart);
 
-function deleteTheme(themeName){
+function deleteTheme(themeName) {
+    if (themeName == "Default") {
+        return;
+    }
     let themeData = JSON.parse(read_data("themeData"));
     delete themeData[themeName];
     write_data("themeData", JSON.stringify(themeData));
@@ -161,6 +178,12 @@ function editTheme(editTheme = null) {
         return;
     } else if ("Close" in editTheme) {
         return;
+    } else if ("Import" in editTheme) {
+        MTScript.evalMacro("[h: ans = input(\"importTheme|Paste JSON|Import Theme\")]");
+        editTheme = JSON.parse(MTScript.getVariable("importTheme"));
+    } else if ("Export" in editTheme) {
+        MapTool.chat.broadcast(JSON.stringify(editTheme));
+        return;
     }
 
     let frameHTML = "<html><body>";
@@ -171,7 +194,9 @@ function editTheme(editTheme = null) {
     frameHTML += "<tr><td><b>Body Background</b></td><td><input type='text' name='bodyBackground' value='" + editTheme.bodyBackground + "'></td></tr>";
     frameHTML += "<tr><td><b>Body Text Colour</b></td><td><input type='text' name='bodyTextColour' value='" + editTheme.bodyTextColour + "'></td></tr>";
     frameHTML += "<tr><td><b>Current Day Background</b></td><td><input type='text' name='currentDayBG' value='" + editTheme.currentDayBG + "'></td></tr>";
+    frameHTML += "<tr><td><b>Current Day Text</b></td><td><input type='text' name='currentDayText' value='" + editTheme.currentDayText + "'></td></tr>";
     frameHTML += "<tr><td><b>Other Day Background</b></td><td><input type='text' name='otherDayBG' value='" + editTheme.otherDayBG + "'></td></tr>";
+    frameHTML += "<tr><td><b>Other Day Text</b></td><td><input type='text' name='otherDayText' value='" + editTheme.otherDayText + "'></td></tr>";
     frameHTML += "<tr><td><b>Event Day Background</b></td><td><input type='text' name='eventDayBG' value='" + editTheme.eventDayBG + "'></td></tr>";
     frameHTML += "<tr><td><b>Heading A Background</b></td><td><input type='text' name='headingABG' value='" + editTheme.headingABG + "'></td></tr>";
     frameHTML += "<tr><td><b>Heading B Background</b></td><td><input type='text' name='headingBBG' value='" + editTheme.headingBBG + "'></td></tr>";
@@ -182,13 +207,16 @@ function editTheme(editTheme = null) {
     frameHTML += "<tr><td><b>Heading B Text Colour</b></td><td><input type='text' name='headingBText' value='" + editTheme.headingBText + "'></td></tr>";
     frameHTML += "<tr><td><b>Button Row Text Colour</b></td><td><input type='text' name='buttonRowText' value='" + editTheme.buttonRowText + "'></td></tr>";
     frameHTML += "<tr><td><b>Day Row Text Colour</b></td><td><input type='text' name='dayRowText' value='" + editTheme.dayRowText + "'></td></tr>";
+    frameHTML += "<tr><td><b>Overlay Background Colour</b></td><td><input type='text' name='overlayBG' value='" + editTheme.overlayBG + "'></td></tr>";
+    frameHTML += "<tr><td><b>Overlay Text Colour</b></td><td><input type='text' name='overlayText' value='" + editTheme.overlayText + "'></td></tr>";
 
     frameHTML += "<tr><td colspan=2><input type='submit' name='Save' value='Save'><input type='submit' name='Close' value='Close'><input type='submit' name='Delete' value='Delete'></td></tr>";
+    frameHTML += "<tr><td colspan=2><input type='submit' name='Import' value='Import'><input type='submit' name='Export' value='Export'></td></tr>";
 
     frameHTML += "</table></form></body></html>";
 
     MTScript.setVariable("frameHTML", frameHTML);
-    MTScript.evalMacro("[frame5(\"Theme Editor\",\"width=350;height=650\"):{[r:frameHTML]}]")
+    MTScript.evalMacro("[frame5(\"Theme Editor\",\"width=350;height=750\"):{[r:frameHTML]}]")
 }
 
 MTScript.registerMacro("datetime.editTheme", editTheme);
