@@ -143,14 +143,14 @@ function editTheme(editTheme = null) {
         editTheme = themeData["Default"];
         editTheme.themeName = "New Theme";
     }
-    
-    if (!("oldThemeName" in editTheme)){
+
+    if (!("oldThemeName" in editTheme)) {
         editTheme.oldThemeName = editTheme.themeName;
     }
 
     if ("Save" in editTheme) {
         saveTheme(editTheme);
-        if ("oldThemeName" in editTheme && editTheme.oldThemeName != editTheme.themeName){
+        if ("oldThemeName" in editTheme && editTheme.oldThemeName != editTheme.themeName) {
             deleteTheme(editTheme.oldThemeName);
         }
         return;

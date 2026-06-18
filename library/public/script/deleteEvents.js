@@ -8,7 +8,7 @@ function deleteEvents() {
     } else {
         delEvents = JSON.parse(delEvents);
         delEvents = delEvents.filter((value, index, array) => array.indexOf(value) === index);
-    }    
+    }
 
     for (var u in delEvents) {
         let delYear = -1;
@@ -65,12 +65,12 @@ function deleteEvents() {
                 break;
             }
         }
-        if(found){
+        if (found) {
             eventData[delYear][delMonth][delDay][delHour][delMin][delSec].splice(delIndex, 1);
         }
     }
-    write_data("eventData",JSON.stringify(eventData));
-    write_data("deleteEvents",JSON.stringify([]));
+    write_data("eventData", JSON.stringify(eventData));
+    write_data("deleteEvents", JSON.stringify([]));
 }
 
 MTScript.registerMacro("datetime.deleteEvents", deleteEvents);

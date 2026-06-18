@@ -1,6 +1,6 @@
 "use strict";
 
-function generateUID(){
+function generateUID() {
     return Math.random().toString(36).substring(2, 20);
 }
 

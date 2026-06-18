@@ -1,11 +1,11 @@
 "use strict";
 
 function getCalendarCSS() {
-    let activeTheme = read_data("activeTheme");
-    let themeData = JSON.parse(read_data("themeData"));
-    themeData = themeData[activeTheme];
+	let activeTheme = read_data("activeTheme");
+	let themeData = JSON.parse(read_data("themeData"));
+	themeData = themeData[activeTheme];
 
-    let calendarCSS = "\
+	let calendarCSS = "\
     p{\
 		text-align:left;\
 	}\
@@ -67,7 +67,7 @@ function getCalendarCSS() {
 	}\
 	";
 
-    return calendarCSS;
+	return calendarCSS;
 }
 
 MTScript.registerMacro("datetime.getCalendarCSS", getCalendarCSS);

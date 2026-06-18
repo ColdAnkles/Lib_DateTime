@@ -1,11 +1,11 @@
 "use strict";
 
 function getEventCSS() {
-    let activeTheme = read_data("activeTheme");
-    let themeData = JSON.parse(read_data("themeData"));
-    themeData = themeData[activeTheme];
+	let activeTheme = read_data("activeTheme");
+	let themeData = JSON.parse(read_data("themeData"));
+	themeData = themeData[activeTheme];
 
-    let eventCSS = "\
+	let eventCSS = "\
     p{\
 		text-align:left;\
 	}\
@@ -60,7 +60,7 @@ function getEventCSS() {
 	\
     ";
 
-    return eventCSS;
+	return eventCSS;
 }
 
 MTScript.registerMacro("datetime.getEventCSS", getEventCSS);
