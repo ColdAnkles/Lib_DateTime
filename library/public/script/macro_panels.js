@@ -1,5 +1,10 @@
 "use strict";
 
+function getFrameworkMacros() {
+    let basicMacros = ["<b>Calendar</b>", "+10 Min", "+6 Sec", "Add Event", "Advance Time", "Advance to Tomorrow", "Quick Event", "Set Date/Time", "Change Theme", "New Theme", "Edit Theme", "Travel"]
+    return basicMacros;
+}
+
 function createGMMacros() {
     let GMMacros = [{ "label": "<b>Calendar</b>", "playerEditable": 0, "command": "[macro(\"DrawCalendar@lib:datetime\"): \"\"]", "tooltip": "Open the Calendar", "color": "black", "fontColor": "white", "fontSize": "1.25em" },
     { "label": "+10 Min", "playerEditable": 0, "command": "[h: arguments = json.set(\"{}\",\"Advance\",\"Advance\",\"selectedNumber\",10,\"numberType\",\"Minutes\")][h, MACRO(\"AdvanceTime@Lib:DateTime\"):arguments]", "tooltip": "Add 10 minutes" },
@@ -29,3 +34,22 @@ function createCampaignMacros() {
 
 MTScript.registerMacro("datetime.createCampaignMacros", createCampaignMacros);
 
+function rebuildMacroPanels() {
+    //GET GM and Campaign Macros
+    //Delete in loop
+    let frameworkMacros = getFrameworkMacros();
+    for (var s in ["gm", "campaign"]) {
+        s = ["gm", "campaign"][s];
+        let macroList = getMacros(s);
+        for (var m in macroList) {
+            m = macroList[m];
+            if (frameworkMacros.includes(m)) {
+                removeMacro(m, s);
+            }
+        }
+    }
+    createGMMacros();
+    createCampaignMacros();
+}
+
+MTScript.registerMacro("datetime.rebuildMacroPanels", rebuildMacroPanels);
