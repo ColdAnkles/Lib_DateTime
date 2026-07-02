@@ -111,6 +111,7 @@ function setActiveTheme(themeName) {
     if (themeName in themeData) {
         write_data("activeTheme", themeName);
         expire_calendar_cache();
+        MTScript.evalMacro("[h: datetime.updateUI()]");
     }
 }
 
